@@ -5,19 +5,7 @@ max=10000
 interval=1.3
 req=100
 ## Default
-url="http://192.168.7.106:8081/Test"
-#url="http://192.168.7.106:8081/Privacy"
-
-### For Deletion
-#while [ $i -le $max ]
-#do
-#  echo "Iteration: ${i}/${max}"
-#  #ab -n $req -c 1 http://192.168.7.106:8082/Home/Employees
-#  ab -n $req -c 1 $url
-#  sleep $interval
-#  ((i++))
-#done
-###
+url="https://google.com/"
 
 if [ -z "$1" ]
 then
