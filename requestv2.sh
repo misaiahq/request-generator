@@ -5,7 +5,7 @@ max=10000
 interval=1.3
 req=100
 ## Default
-url="https://google.com/"
+url="http://google.com/"
 
 if [ -z "$1" ]
 then
@@ -37,16 +37,15 @@ else
 fi
 
 #start=date
-echo "$(date)"
-#printf "%(%Y-%m-%d %H:%M:%S)T | Requests:$req | Interval:${interval} | Max=${max} | URL=${url} | Concurrency:${c} \n" > requestv2.log
-echo "$(date) | Requests:$req | Interval:${interval} | Max=${max} | URL=${url} | Concurrency:${c} 
-" > requestv2.log
+echo "$(date)" >> request.log
+#printf "%(%Y-%m-%d %H:%M:%S)T | Requests:$req | Interval:${interval} | Max=${max} | URL=${url} | Concurrency:${c} \n" >> request.log
+echo "$(date) | Requests:$req | Interval:${interval} | Max=${max} | URL=${url} | Concurrency:${c} " >> request.log
 while [ $i -le $max ]
 do
-  printf %.1f%% "$((10**4 * ${i}/${max}*100))e-4"
-  echo " | [${i}/${max}] Sending ${req} requests to ${url} using ${c} concurrent thread(s) in ${interval}-second intervals."
-  #echo "Iteration: ${i}/${max}"
-  ab -n $req -c $c $url >> requestv2.log
+  printf %.1f%% "$((10**4 * ${i}/${max}*100))e-4" >> request.log
+  echo " | [${i}/${max}] Sending ${req} requests to ${url} using ${c} concurrent thread(s) in ${interval}-second intervals." >> request.log
+  #echo "Iteration: ${i}/${max}" >> request.log
+  ab -n $req -c $c $url >> requestv2.log >> request.log
   sleep $interval
   ((i++))
 done
